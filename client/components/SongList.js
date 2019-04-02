@@ -4,6 +4,8 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
 
+import query from '../queries/fetchSongs';
+
 const propTypes = {
   name: PropTypes.string,
   data: PropTypes.object
@@ -33,15 +35,6 @@ class SongList extends Component {
     );
   }
 }
-
-const query = gql`
-  {
-    songs {
-      id
-      title
-    }
-  }
-`;
 
 SongList.propTypes = propTypes;
 

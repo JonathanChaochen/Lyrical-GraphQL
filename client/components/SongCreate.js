@@ -4,6 +4,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Link } from 'react-router-dom';
 
+import query from '../queries/fetchSongs';
 import song from './song';
 
 const propTypes = {
@@ -29,7 +30,8 @@ class SongCreate extends Component {
     mutate({
       variables: {
         title
-      }
+      },
+      refetchQueries: [{ query }]
     }).then(() => history.push('/'));
   };
 
