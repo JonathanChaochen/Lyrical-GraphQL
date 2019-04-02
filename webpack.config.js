@@ -1,18 +1,23 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
+  mode: 'development',
   entry: './client/index.js',
   output: {
-    path: '/',
+    path: path.resolve(__dirname + '/dist'),
+    publicPath: '/',
     filename: 'bundle.js'
   },
   module: {
     rules: [
       {
-        use: 'babel-loader',
         test: /\.js$/,
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader' // need options if not have babel config
+        }
       },
       {
         use: ['style-loader', 'css-loader'],
@@ -22,7 +27,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'client/index.html'
+      template: 'client/index.html',
+      filename: './index.html'
     })
   ]
 };
