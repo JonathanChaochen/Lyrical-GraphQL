@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
+import { compose } from 'recompose';
 
 import query from '../queries/fetchSongs';
 
@@ -36,6 +37,19 @@ class SongList extends Component {
   }
 }
 
+const mutation = gql`
+  mutation DeleteSong($id: ID) {
+    deleteSong(id: $id) {
+      id
+    }
+  }
+`;
+
+const enhance = compose(
+  graphql(query),
+  graphql(mutation)
+);
+
 SongList.propTypes = propTypes;
 
-export default graphql(query)(SongList);
+export default enhance(SongList);
