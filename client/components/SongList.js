@@ -8,7 +8,7 @@ import { compose } from 'recompose';
 import query from '../queries/fetchSongs';
 
 const propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   data: PropTypes.object.isRequired,
   mutate: PropTypes.func.isRequired
 };

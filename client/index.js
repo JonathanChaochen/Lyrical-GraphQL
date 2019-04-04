@@ -9,6 +9,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import SongList from './components/SongList';
 import SongCreate from './components/SongCreate';
+import SongDetail from './components/SongDetail';
 
 const client = new ApolloClient({
   // By default, this client will send queries to the
@@ -38,6 +39,7 @@ const Root = () => {
           <Switch>
             <Route path="/" exact component={SongList} />
             <Route path="/songs/new" component={SongCreate} />
+            <Route path="/songs/:id" component={SongDetail} />
           </Switch>
 
           {/* <Route path="/users/" component={Users} /> */}
