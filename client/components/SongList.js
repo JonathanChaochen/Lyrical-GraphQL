@@ -8,13 +8,16 @@ import { compose } from 'recompose';
 import query from '../queries/fetchSongs';
 
 const propTypes = {
-  name: PropTypes.string,
-  data: PropTypes.object
+  name: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
+  mutate: PropTypes.func.isRequired
 };
 
 class SongList extends Component {
   onSongDelete = id => {
-    this.props.mutate({ variables: { id }, refetchQueries: [{ query }] });
+    this.props
+      .mutate({ variables: { id } })
+      .then(() => this.props.data.refetch());
   };
 
   renderSongs() {
