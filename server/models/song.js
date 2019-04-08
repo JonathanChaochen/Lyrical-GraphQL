@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+
+const {Schema} = mongoose;
 
 const SongSchema = new Schema(
   {
@@ -20,7 +21,7 @@ const SongSchema = new Schema(
   }
 );
 
-SongSchema.statics.addLyric = function(id, content) {
+SongSchema.statics.addLyric = function addLyric(id, content) {
   const Lyric = mongoose.model('lyric');
 
   return this.findById(id).then(song => {
@@ -32,7 +33,7 @@ SongSchema.statics.addLyric = function(id, content) {
   });
 };
 
-SongSchema.statics.findLyrics = function(id) {
+SongSchema.statics.findLyrics = function findLyrics(id) {
   return this.findById(id)
     .populate('lyrics')
     .then(song => song.lyrics);
