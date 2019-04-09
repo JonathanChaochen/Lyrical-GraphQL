@@ -16,23 +16,21 @@ class SongDetail extends Component {
     // console.log(this.props.match);
     return (
       <ErrorBoundary>
-        <div>
-          <Link to="/">Back</Link>
-          <Query
-            query={fetchSong}
-            variables={{ id: this.props.match.params.id }}
-          >
-            {({ loading, error, data }) => {
-              if (loading) return <p>Loading...</p>;
-              if (error) return <p>Error :(</p>;
-              if (!data.song) return <p>Loading...</p>;
+        <Query query={fetchSong} variables={{ id: this.props.match.params.id }}>
+          {({ loading, error, data }) => {
+            if (loading) return <p>Loading...</p>;
+            if (error) return <p>Error :(</p>;
 
-              return <h3>{data.song.title}</h3>;
-            }}
-          </Query>
-          <LyricList />
-          <LyricCreate songId={this.props.match.params.id} />
-        </div>
+            return (
+              <div>
+                <Link to="/">Back</Link>
+                <h3>{data.song.title}</h3>
+                <LyricList lyrics={data.song.lyrics} />
+                <LyricCreate songId={this.props.match.params.id} />
+              </div>
+            );
+          }}
+        </Query>
       </ErrorBoundary>
     );
   }

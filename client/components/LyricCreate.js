@@ -13,12 +13,6 @@ class LyricCreate extends Component {
     content: ''
   };
 
-  onSubmit = event => {
-    const { content } = this.state;
-    event.preventDefault();
-    // this.props.mutate({ variables: { content, songId } });
-  };
-
   render() {
     const { content } = this.state;
     const { songId } = this.props;
@@ -30,7 +24,7 @@ class LyricCreate extends Component {
               e.preventDefault();
               // const { songId } = this.props;
               addLyric({ variables: { content, songId } });
-              // input.value = '';
+              this.setState({ content: '' });
             }}
           >
             <label>Add a Lyric</label>

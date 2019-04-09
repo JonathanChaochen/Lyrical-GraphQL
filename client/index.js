@@ -11,11 +11,15 @@ import SongList from './components/SongList';
 import SongCreate from './components/SongCreate';
 import SongDetail from './components/SongDetail';
 
+const cache = new InMemoryCache({
+  dataIdFromObject: object => object.id || null
+});
+
 const client = new ApolloClient({
   // By default, this client will send queries to the
   //  `/graphql` endpoint on the same host
   link: new HttpLink(),
-  cache: new InMemoryCache()
+  cache
 });
 
 const Root = () => {

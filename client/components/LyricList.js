@@ -3,10 +3,19 @@ import PropTypes from 'prop-types';
 
 export default class LyricList extends Component {
   static propTypes = {
-    prop: PropTypes
+    lyrics: PropTypes.array.isRequired
   };
 
+  renderLyrics() {
+    const { lyrics } = this.props;
+    return lyrics.map(({ id, content }) => (
+      <li key={id} className="collection-item">
+        {content}
+      </li>
+    ));
+  }
+
   render() {
-    return <ul>LyricList</ul>;
+    return <ul className="collection">{this.renderLyrics()}</ul>;
   }
 }
