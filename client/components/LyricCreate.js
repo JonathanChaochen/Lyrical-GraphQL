@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { graphql, Mutation } from 'react-apollo';
+import { Mutation } from 'react-apollo';
 import mutation from '../mutations/AddLyricToSong';
-import fetchSong from '../queries/fetchSong';
 
 class LyricCreate extends Component {
   static propTypes = {

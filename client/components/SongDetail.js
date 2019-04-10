@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { graphql, Query } from 'react-apollo';
+import { Query } from 'react-apollo';
 import fetchSong from '../queries/fetchSong';
 import LyricCreate from './LyricCreate';
 import ErrorBoundary from './ErrorBoundary';

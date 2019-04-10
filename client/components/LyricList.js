@@ -1,23 +1,35 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Mutation } from 'react-apollo';
+import mutation from '../mutations/LikeLyric';
 
 export default class LyricList extends Component {
   static propTypes = {
     lyrics: PropTypes.array.isRequired
   };
 
-  onLike = id => {
-    console.log(id);
+  onLike = (id, likeLyric) => {
+    likeLyric({ variables: { id } });
   };
 
   renderLyrics() {
     const { lyrics } = this.props;
-    return lyrics.map(({ id, content }) => (
+    return lyrics.map(({ id, content, likes }) => (
       <li key={id} className="collection-item">
         {content}
-        <i className="material-icons" onClick={() => this.onLike(id)}>
-          thumb_up
-        </i>
+        <Mutation mutation={mutation}>
+          {likeLyric => (
+            <div>
+              <i
+                className="material-icons"
+                onClick={() => this.onLike(id, likeLyric)}
+              >
+                thumb_up
+              </i>
+              {likes}
+            </div>
+          )}
+        </Mutation>
       </li>
     ));
   }

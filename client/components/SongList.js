@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { compose, graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
-// import { compose } from 'recompose';
 
 import query from '../queries/fetchSongs';
 
