@@ -11,9 +11,7 @@ import SongList from './components/SongList';
 import SongCreate from './components/SongCreate';
 import SongDetail from './components/SongDetail';
 
-const cache = new InMemoryCache({
-  dataIdFromObject: object => object.id || null
-});
+const cache = new InMemoryCache();
 
 const client = new ApolloClient({
   // By default, this client will send queries to the
