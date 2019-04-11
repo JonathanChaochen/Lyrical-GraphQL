@@ -17,12 +17,12 @@ class LyricCreate extends Component {
     const { songId } = this.props;
     return (
       <Mutation mutation={mutation}>
-        {addLyric => (
+        {mutate => (
           <form
             onSubmit={e => {
               e.preventDefault();
               // const { songId } = this.props;
-              addLyric({ variables: { content, songId } });
+              mutate({ variables: { content, songId } });
               this.setState({ content: '' });
             }}
           >

@@ -8,8 +8,18 @@ export default class LyricList extends Component {
     lyrics: PropTypes.array.isRequired
   };
 
-  onLike = (id, likeLyric) => {
-    likeLyric({ variables: { id } });
+  onLike = (id, likes, mutate) => {
+    mutate({
+      variables: { id },
+      optimisticResponse: {
+        __typename: 'Mutation',
+        likeLyric: {
+          id,
+          __typename: 'LyricType',
+          likes: likes + 1
+        }
+      }
+    });
   };
 
   renderLyrics() {
@@ -18,11 +28,12 @@ export default class LyricList extends Component {
       <li key={id} className="collection-item">
         {content}
         <Mutation mutation={mutation}>
-          {likeLyric => (
-            <div>
+          {mutate => (
+            <div className="vote-box">
+              {console.log(mutate)}
               <i
                 className="material-icons"
-                onClick={() => this.onLike(id, likeLyric)}
+                onClick={() => this.onLike(id, likes, mutate)}
               >
                 thumb_up
               </i>
